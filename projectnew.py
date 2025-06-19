@@ -61,11 +61,15 @@ cv, model, accuracy = load_model()
 st.subheader("📝 Write your movie review here:")
 user_review = st.text_area("For example: *This movie was absolutely amazing! A must watch.*", height=150)
 
+min_length = 20
+
 # ------------------------------------------
 # 🎯 Predict Button
 if st.button("🔍 Analyze Review"):
     if user_review.strip() == "":
         st.warning("⚠️ Please enter a review before submitting.")
+    elif len(user_review.strip()) < min_length:
+        st.warning(f"Please enter at least {min_length} characters in your review.")
     else:
         transformed = cv.transform([user_review])
         prediction = model.predict(transformed)[0]
