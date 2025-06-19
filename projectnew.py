@@ -42,7 +42,7 @@ st.markdown("<div class='subtitle'>✨ Let the ML model decode your review as Po
 # 🔍 Load Data & Train Model
 @st.cache_data
 def load_model():
-    data = pd.read_csv("imdb_sorted.csv")
+    data = pd.read_csv("imdb.csv")
     x = data['review']
     y = data['sentiment']
     x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=0.3, random_state=0)
